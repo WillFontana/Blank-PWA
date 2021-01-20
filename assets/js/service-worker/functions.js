@@ -60,6 +60,30 @@ function callConfirmSubscription() {
   });
 }
 
+// Verificação se a aplicação está rodando como app
+function detectStandaloneMode() {
+  if (window.matchMedia('(display-mode: standalone)').matches
+    || window.matchMedia('(display-mode: fullscreen)').matches
+    || window.matchMedia('(display-mode: minimal-ui)').matches)
+    return true;
+  else
+    return false;
+}
+
+// Verifica se o usuário está pelo app instalado no IOS apenas
+function checkRunningIOSApp() {
+  if (detectIOSDevice && !detectStandaloneMode()) {
+    // O app ainda não foi instalado e podemos indicar a instalação
+    return;
+  } else if (!detectIOSDevice()) {
+    // O app não está rodando em ambiente IOS
+    return;
+  } else {
+    // A Aplicação já está instalada
+    return;
+  }
+}
+
 // Gera o nosso corpo da mensagem de subscription
 function createPushSubscribebody(pushSubscibe) {
   let { endpoint } = pushSubscibe;

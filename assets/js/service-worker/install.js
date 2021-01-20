@@ -14,3 +14,5 @@ window.addEventListener('beforeinstallprompt', function (event) {
   enableDownload(); // habilitamos o download da aplicação
   return;
 });
+
+window.onload = checkRunningIOSApp();
