@@ -70,6 +70,20 @@ function detectStandaloneMode() {
     return false;
 }
 
+// Verifica se a plataforma é iOS
+function detectIOSDevice() {
+  return [
+    'iPad Simulator',
+    'iPhone Simulator',
+    'iPod Simulator',
+    'iPad',
+    'iPhone',
+    'iPod'
+  ].includes(navigator.platform)
+  // iPad com iOS 13
+  || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+}
+
 // Verifica se o usuário está pelo app instalado no IOS apenas
 function checkRunningIOSApp() {
   if (detectIOSDevice && !detectStandaloneMode()) {
